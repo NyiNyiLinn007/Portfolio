@@ -330,8 +330,18 @@
       });
 
       const darkToggle = document.getElementById('darkToggle');
+
+      // Load theme preference. Default to dark mode when no preference saved.
+      const savedTheme = localStorage.getItem('theme');
+      const isDark = (savedTheme === 'dark') || (savedTheme === null);
+      document.body.classList.toggle('dark-mode', isDark);
+      if (darkToggle) darkToggle.checked = isDark;
+
+      // Persist user selection
       darkToggle.addEventListener('change', function () {
-        document.body.classList.toggle('dark-mode', darkToggle.checked);
+        const dark = darkToggle.checked;
+        document.body.classList.toggle('dark-mode', dark);
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
       });
     });
   </script>
