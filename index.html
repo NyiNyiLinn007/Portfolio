@@ -490,7 +490,7 @@
     /* Projects Section */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
       gap: 2rem;
     }
 
@@ -662,7 +662,7 @@
     /* Skills Section */
     .skills-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 1.5rem;
     }
 
@@ -776,11 +776,16 @@
 
     .contact-link-text {
       font-weight: 500;
+      overflow-wrap: anywhere;
     }
 
     .contact-link-label {
       font-size: 0.8rem;
       color: var(--text-muted);
+    }
+
+    .contact-link > div:last-child {
+      min-width: 0;
     }
 
     .social-links {
@@ -920,7 +925,7 @@
       transition: all 0.3s ease;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .mobile-menu-btn {
         display: flex;
       }
@@ -953,6 +958,24 @@
         padding: 1rem;
         border-radius: 10px;
       }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 7rem 1.25rem 3rem;
+      }
+
+      section {
+        padding: 5rem 1.25rem;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 11vw, 4rem);
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
 
       .projects-grid {
         grid-template-columns: 1fr;
@@ -964,6 +987,48 @@
 
       .about-stats {
         justify-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav,
+      nav.scrolled {
+        padding: 0.85rem 1rem;
+      }
+
+      .theme-toggle {
+        gap: 0.5rem;
+        padding: 0.5rem 0.75rem;
+      }
+
+      .profile-pic {
+        width: 160px;
+        height: 160px;
+      }
+
+      .profile-container::after {
+        width: 180px;
+        height: 180px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+
+      .project-card,
+      .skill-card,
+      .experience-card {
+        padding: 1.25rem;
+      }
+
+      .cta-card {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .theme-toggle > span:last-child {
+        display: none;
       }
     }
 
