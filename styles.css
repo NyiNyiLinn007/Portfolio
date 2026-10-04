@@ -145,7 +145,10 @@ button { cursor: pointer; background: none; border: 0; }
   background: var(--surface);
   transition: border-color .25s, transform .25s var(--ease);
 }
-.icon-btn:hover { border-color: var(--border-strong); transform: rotate(-12deg); }
+@media (hover: hover) {
+  .icon-btn:hover { border-color: var(--border-strong); transform: rotate(-12deg); }
+  .icon-btn.nav__toggle:hover { transform: none; }
+}
 .icon-btn svg { width: 18px; height: 18px; }
 [data-theme='dark'] .icon-sun { display: block; }
 [data-theme='dark'] .icon-moon { display: none; }
@@ -186,8 +189,8 @@ button { cursor: pointer; background: none; border: 0; }
 .nav__link.is-active { color: var(--text); background: var(--surface-2); }
 .nav__mobile-cta { display: none; }
 
-.nav__actions { display: flex; align-items: center; gap: 10px; }
-.nav__toggle { display: none; flex-direction: column; gap: 4px; }
+.nav__actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav__toggle { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 4px; flex-shrink: 0; }
 .nav__toggle span { display: block; width: 16px; height: 2px; background: currentColor; border-radius: 2px; transition: transform .3s var(--ease), opacity .2s; }
 .nav__toggle[aria-expanded='true'] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .nav__toggle[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
