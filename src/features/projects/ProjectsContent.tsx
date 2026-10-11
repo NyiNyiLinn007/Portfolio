@@ -96,7 +96,12 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
 
       {project.isSample && (
         <p className="mt-3 rounded-xl border border-amber-300/20 bg-amber-400/5 p-3 text-xs text-amber-100/90">
-          This is a fictional sample project used as demo content. Replace it in <code className="font-mono">src/data/portfolio.ts</code>.
+          This is a fictional sample project used as demo content.
+          {import.meta.env.DEV && (
+            <>
+              {' '}Replace it in <code className="font-mono">src/data/portfolio.ts</code>.
+            </>
+          )}
         </p>
       )}
 
@@ -133,7 +138,9 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
           </a>
         )}
       </div>
-      {!github && !live && <p className="mt-4 text-xs text-slate-500">No public repository or live demo is configured for this project.</p>}
+      {import.meta.env.DEV && !github && !live && (
+        <p className="mt-4 text-xs text-slate-500">No public repository or live demo is configured for this project.</p>
+      )}
     </article>
   )
 }

@@ -4,11 +4,13 @@ import { SocialIcon, externalLinkProps, isSafeUrl } from '@/components/ui/Social
 
 export function SocialContent() {
   const { socialLinks } = usePortfolio()
+  // Placeholders for empty URLs are a setup aid for local development only.
+  const links = import.meta.env.DEV ? socialLinks : socialLinks.filter((link) => isSafeUrl(link.url))
   return (
     <div>
       <p className="mb-4 text-sm text-slate-400">The city never sleeps — and neither do these feeds. Find me around the web:</p>
       <ul className="space-y-2.5">
-        {socialLinks.map((link) => {
+        {links.map((link) => {
           const configured = isSafeUrl(link.url)
           const inner = (
             <>
@@ -45,9 +47,6 @@ export function SocialContent() {
           )
         })}
       </ul>
-      <p className="mt-4 text-xs text-slate-500">
-        Links are configured in <code className="font-mono">socialLinks</code> inside <code className="font-mono">src/data/portfolio.ts</code>. Empty URLs are shown as “not configured” instead of broken links.
-      </p>
     </div>
   )
 }

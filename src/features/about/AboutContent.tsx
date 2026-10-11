@@ -64,12 +64,14 @@ export function AboutContent({ showProfileLink = true }: { showProfileLink?: boo
             <Download className="size-4" aria-hidden="true" /> Download Resume
           </a>
         ) : (
-          <button type="button" className="btn-secondary flex-1" disabled aria-describedby="resume-config-note">
-            <Download className="size-4" aria-hidden="true" /> Download Resume
-          </button>
+          import.meta.env.DEV && (
+            <button type="button" className="btn-secondary flex-1" disabled aria-describedby="resume-config-note">
+              <Download className="size-4" aria-hidden="true" /> Download Resume
+            </button>
+          )
         )}
       </div>
-      {!data.resumePath && (
+      {import.meta.env.DEV && !data.resumePath && (
         <p id="resume-config-note" className="-mt-3 flex gap-2 rounded-xl border border-amber-300/20 bg-amber-400/5 p-3 text-xs text-amber-100/90">
           <FileWarning className="size-4 shrink-0 text-amber-300" aria-hidden="true" />
           <span>
